@@ -81,7 +81,7 @@ while True:
             month = int(input("Enter your Month of birth: "))
             Year = int(input("Enter your Year: "))
             subject = "OTP For Verification"
-            body = f"Hello {name} !\nroll no : {rollno} \nbranch : {branch} \nDate of Birth : {date} - {months[month]}\nYour Secret OTP is {otp}"
+            body = f"Hello {name} !\nroll no : {roll} \nbranch : {branch} \nDate of Birth : {date} - {months[month]}\nYour Secret OTP is {otp}"
 
             msg = MIMEMultipart()
             msg['From'] = "sdmunvar7860@gmail.com"
