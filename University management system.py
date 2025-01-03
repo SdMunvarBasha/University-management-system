@@ -76,8 +76,12 @@ while True:
             s = student(roll,name,email,branch)
             
             otp = random.randint(1000, 9999)
+            months = {1:"January",2:"Feb",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"Decemeber"}
+            date = int(input("Enter Your Date of Birth: "))
+            month = int(input("Enter your Month of birth: "))
+            Year = int(input("Enter your Year: "))
             subject = "OTP For Verification"
-            body = f"Hello {name} !\n Your Secret OTP is {otp}"
+            body = f"Hello {name} !\nDate of Birth : {date} - {months[month]}\nYour Secret OTP is {otp}"
 
             msg = MIMEMultipart()
             msg['From'] = "sdmunvar7860@gmail.com"
@@ -123,14 +127,39 @@ while True:
             email = input("Enter Teacher Email: ")
             subject = input("Enter Teacher Subject: ")
             t = teacher(roll,name,email,subject)
-            clg.add_teacher(t)
-            print("*************************")
-            print("Teacher added Sucessfully!")
-            print("*************************")
-        else:
-            print("************************")
-            print("College Does not Exists !")
-            print("************************")
+            
+            otp = random.randint(1000, 9999)
+            months = {1:"January",2:"Feb",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"Decemeber"}
+            date = int(input("Enter Your Date of Birth: "))
+            month = int(input("Enter your Month of birth: "))
+            Year = int(input("Enter your Year: "))
+            subject = "OTP For Verification"
+            body = f"Hello {name} !\nDate of Birth : {date} - {months[month]}\nYour Secret OTP is {otp}"
+
+            msg = MIMEMultipart()
+            msg['From'] = "sdmunvar7860@gmail.com"
+            msg['To'] = email
+            msg['Subject'] = subject
+            msg.attach(MIMEText(body,'plain'))
+            
+            server = smtplib.SMTP("smtp.gmail.com",587)
+            server.starttls()
+            server.login("sdmunvar7860@gmail.com","wlnw fhhm pzvr uyvp")
+            server.send_message(msg)
+            server.quit()
+            print(f"An OTP has been sent to your email {email}, Please enter it to proceed.")
+            uotp=int(input('Enter OTP:'))
+            if otp==uotp:
+                print('OTP verified')
+                clg.add_teacher(t)
+                print("*************************")
+                print("Teacher added Sucessfully!")
+                print("*************************")
+            else:
+                print('OTP invalid')
+                print("*************************")
+                print("Teacher not added!")
+                print("*************************")
     elif ip == 4:
         cid = input("Enter College id: ")
         x = False
@@ -191,22 +220,3 @@ while True:
         print("Thanks! Visit Again ")
         print("************************")
         break
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
